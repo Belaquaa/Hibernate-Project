@@ -7,32 +7,47 @@ import java.sql.SQLException;
 
 public class Util {
 
-    private static Util instance;
-    private static Connection connection;
-
     private static final String URL = "jdbc:mysql://localhost:3306/sakila";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    private Util() {
-        try {
-            // Загрузка драйвера JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Установка соединения с базой данных
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    private static volatile Util instance;
+    private Connection connection;
 
-    public Connection getConnection() {
-        return connection;
+    private Util() {
     }
 
     public static Util getInstance() {
         if (instance == null) {
-            instance = new Util();
+            synchronized (Util.class) {
+                if (instance == null) {
+                    instance = new Util();
+                }
+            }
         }
         return instance;
+    }
+
+    public Connection getConnection() {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return connection;
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connection = null;
+            }
+        }
     }
 }
