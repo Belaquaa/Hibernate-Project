@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-/*
-Соединение с БД
- */
-
 public class Util {
 
     private static Util instance;
