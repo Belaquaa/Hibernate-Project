@@ -2,13 +2,15 @@ package jdbc.jpa.service;
 
 import jdbc.jpa.dao.UserDao;
 import jdbc.jpa.dao.UserDaoJDBCImpl;
+import jdbc.jpa.dao.UserDaoHibernateImpl;
 import jdbc.jpa.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDao userDao = new UserDaoJDBCImpl();
+    UserDao userDao = new UserDaoHibernateImpl();
 
+    //UserDao userDao = new UserDaoJDBCImpl();
     public void createUsersTable() {
         userDao.createUsersTable();
     }

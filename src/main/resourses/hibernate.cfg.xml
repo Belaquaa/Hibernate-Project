@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Настройки HikariCP -->
+        <property name="hibernate.connection.provider_class">com.zaxxer.hikari.hibernate.HikariConnectionProvider</property>
+        <property name="hibernate.hikari.dataSourceClassName">com.mysql.cj.jdbc.MysqlDataSource</property>
+
+        <property name="hibernate.hikari.dataSource.url">jdbc:mysql://localhost:3306/sakila</property>
+        <property name="hibernate.hikari.dataSource.user">root</property>
+        <property name="hibernate.hikari.dataSource.password">root</property>
+
+        <property name="hibernate.hikari.minimumIdle">5</property>
+        <property name="hibernate.hikari.maximumPoolSize">20</property>
+        <property name="hibernate.hikari.idleTimeout">300000</property>
+        <property name="hibernate.hikari.poolName">HibernateHikariCP</property>
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
+        <property name="hibernate.hikari.maxLifetime">1800000</property>
+
+        <!-- Настройки Hibernate -->
+        <property name="show_sql">false</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform</property>
+        <property name="hibernate.packagesToScan">jdbc.jpa.model</property>
+        <mapping class="jdbc.jpa.model.User"/>
+
+    </session-factory>
+
+</hibernate-configuration>
