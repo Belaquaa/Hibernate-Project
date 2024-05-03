@@ -15,7 +15,7 @@
 - База данных (например, MySQL, PostgreSQL)
 - Maven для сборки проекта
 
-- ## Установка и запуск
+## Установка и запуск
 
 1. Клонируйте репозиторий: git clone https://github.com/Belaquaa/PrePrj.git
 2. Перейдите в директорию проекта: cd PrePrj
