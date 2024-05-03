@@ -16,7 +16,7 @@ public class Main {
         userService.saveUser("name4", "lastName4", (byte) 40);
         userService.saveUser("name5", "lastName5", (byte) 50);
 
-        userService.removeUserById(1);
+        userService.removeUserById(3);
 
         userService.getAllUsers();
 
@@ -26,6 +26,5 @@ public class Main {
 
         userService.dropUsersTable();
 
-        // userService.getAllUsers(); - ошибка
     }
 }

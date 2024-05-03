@@ -45,7 +45,7 @@ public class UserServiceTest {
             userService.createUsersTable();
             userService.saveUser(testName, testLastName, testAge);
 
-            User user = userService.getAllUsers().get(0);
+            User user = userService.getAllUsers().getFirst();
 
             if (!testName.equals(user.getName())
                     || !testLastName.equals(user.getLastName())
@@ -68,7 +68,7 @@ public class UserServiceTest {
             userService.removeUserById(1L);
 
             List<User> userList = userService.getAllUsers();
-            if (userList.size() != 0) {
+            if (!userList.isEmpty()) {
                 Assert.fail("Проверьте корректность работы метода удаления пользователя");
             }
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class UserServiceTest {
             userService.saveUser(testName, testLastName, testAge);
             userService.cleanUsersTable();
 
-            if (userService.getAllUsers().size() != 0) {
+            if (!userService.getAllUsers().isEmpty()) {
                 Assert.fail("Метод очищения таблицы пользователей реализован не корректно");
             }
         } catch (Exception e) {
